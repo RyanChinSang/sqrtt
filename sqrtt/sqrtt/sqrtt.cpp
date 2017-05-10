@@ -1,6 +1,6 @@
 #include <iostream>
 
-// FINDING THE SQUAREROOT OF A NUMBER v1.0
+// FINDING THE SQUAREROOT OF A NUMBER v1.1
 // Approximations gets increasingly worse as number gets higher (Notably n @ 6-digits)
 // Computation time becomes much longer as number gets higher (Notably n @ 6-digits)
 // This works ONLY for positive integer numbers.
@@ -232,7 +232,7 @@ long double interco(long double n, long double pow, long double iter)
 	return ans;
 }
 
-//sqruareroot
+//sqruareroot 2
 long double sqrtt(long double n)
 {
 	long double pow = 0.5; // sqare root
@@ -253,14 +253,41 @@ long double sqrtt(long double n)
 	}
 }
 
+
+//sqruareroot 3
+long double sqrttt(long double n, long double iter)
+{
+	long double pow = 0.5; // sqare root
+	if (n > 1)
+	{
+		return ((coeff(n))*(interco(n, pow, iter)));
+	}
+	else if (n == 1 || n == 0)
+	{
+		return(n);
+	}
+	else
+	{
+		cout << "ERROR: sqrtt(" << n << ", " << pow << ", " << iter << ")" << endl;
+		cout << "Cannot find the " << (1 / pow) << "-root of a negative number!" << endl;
+		return (0);
+	}
+
+}
+
+
 int main()
 {
 start:
 	long double n;
-	cout << "Enter n: ";
+	cout << "Enter x: ";
 	cin >> n;
 	cout << "sqrtt(" << n << ") = " << sqrtt(n) << endl;
 	cout << "sqrt(" << n << ") = " << sqrt(n) << endl;
+	for (long double iter = 0; iter <= 14; iter++)
+	{
+		cout << "n(" << n << ", " << iter + 1 << ") = " << sqrttt(n, iter) << endl;
+	}
 	goto start;
 	return 0;
 }
